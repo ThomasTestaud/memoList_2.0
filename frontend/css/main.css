@@ -20,3 +20,7 @@ body{
 h2{
     color: red;
 }
+.emoji-geant {
+    font-size: 5rem; /* Taille de police agrandie */
+    display: inline-block; /* Pour que le texte ne se casse pas à la ligne */
+}

@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const SQLquery = require('../sql/sql.js');
 
 let list = [
   {
@@ -29,6 +30,14 @@ let list = [
 ]
 
 router.get('/', function(req, res, next) {
+  const query = `SELECT * FROM words`;
+
+  SQLquery(query, (response) => {
+      res.json(response);
+  });
+});
+
+router.post('/', function(req, res, next) {
   res.json(list);
 });
 

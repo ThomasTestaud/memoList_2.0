@@ -1,7 +1,7 @@
 <?php require_once("header.php"); ?>
 
 <div class="container">
-  <h1 class="mt-4">Create new List</h1>
+  <h2 class="mt-4">Create new List</h2>
     <div class="form-group">
       <label for="title">List's name:</label>
       <input type="text" class="form-control" id="title">
@@ -18,11 +18,11 @@
     <div id="edit-form">
     <div class="form-group">
       <label for="title">Modify name:</label>
-      <input type="text" class="form-control" id="title">
+      <input type="text" class="form-control" id="title-edit">
     </div>
     <div class="form-group">
       <label for="description">Modify description:</label>
-      <input type="text" class="form-control" id="description">
+      <input type="text" class="form-control" id="description-edit">
     </div>
     <div class="d-flex justify-content-center">
         <button id="validate-edit" class="btn btn-success m-1 mt-2">Validate</button>

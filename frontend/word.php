@@ -12,4 +12,6 @@
 </div>
 
 
+
+<script src="js/word.js"></script>
 <?php require_once("footer.php"); ?>

@@ -1,0 +1,26 @@
+{
+    "0": {
+        "id": 1,
+        "list_id": 1,
+        "string_one": "Bonjour",
+        "string_two": "Hello"
+    },
+    "1": {
+        "id": 1,
+        "list_id": 1,
+        "string_one": "Bonjour",
+        "string_two": "Hello"
+    },
+    "2": {
+        "id": 1,
+        "list_id": 1,
+        "string_one": "Bonjour",
+        "string_two": "Hello"
+    },
+    "3": {
+        "id": 1,
+        "list_id": 1,
+        "string_one": "Bonjour",
+        "string_two": "Hello"
+    }
+}

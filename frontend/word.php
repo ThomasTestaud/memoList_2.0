@@ -23,21 +23,13 @@
                 <h3>Création de nouveaux mots</h3>
                 <div class="mb-3">
                     <label for="string_one">String One</label>
-                    <input type="text" id="string_one" class="form-control">
+                    <input type="text" id="new_string_one" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label for="string_two">String Two</label>
-                    <input type="text" id="string_two" class="form-control">
+                    <input type="text" id="new_string_two" class="form-control">
                 </div>
-                <div class="mb-3">
-                    <label for="categorie">Catégorie</label>
-                    <select id="categorie" class="form-select">
-                        <option value="categorie1">Catégorie 1</option>
-                        <option value="categorie2">Catégorie 2</option>
-                        <option value="categorie3">Catégorie 3</option>
-                    </select>
-                </div>
-                <button id="creerMot" class="btn btn-success">Créer Mot</button>
+                <button id="create-word" class="btn btn-success">Create new word</button>
                 <div class="container mt-5">
                     <h2>Liste de Mots</h2>
                     <table class="table table-bordered">

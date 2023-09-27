@@ -10,6 +10,7 @@ const submit_response = document.getElementById('submit-response');
 const string_two = document.getElementById('string-two');
 const crud_button = document.getElementById('crud-button');
 const crud = document.getElementById('crud');
+const create_word = document.getElementById('create-word');
 let trueResponse;
 // Make a GET request using the fetch API
 fetch(apiUrl)
@@ -35,6 +36,36 @@ fetch(apiUrl)
         // Handle any errors that occurred during the fetch
         console.error('Fetch error:', error);
     });
+
+function createWord() {
+    const new_string_one = document.getElementById('new_string_one').value;
+    const new_string_two = document.getElementById('new_string_two').value;
+
+    const data = {
+        stringOne: new_string_one,
+        stringTwo: new_string_two,
+    };
+    console.log(data);
+    fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(responseData => {
+            console.log('Response Data:', responseData);
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
+}
 function displayAnswer(){
     string_two_response.classList.toggle("d-none");
 }
@@ -51,6 +82,7 @@ function displayCrud(){
 show_answer.addEventListener("click",displayAnswer);
 submit_response.addEventListener("click",checkAnswer);
 crud_button.addEventListener("click",displayCrud);
+create_word.addEventListener("click",createWord);
 function checkAnswer(){
     string_two.value.toLowerCase() === trueResponse.toLowerCase() ? displaySuccess() : displayError();
 };

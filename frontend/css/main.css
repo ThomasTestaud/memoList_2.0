@@ -1,10 +1,10 @@
 body{
     min-height: 100vh;
     width: 100%;
-    background: linear-gradient(252deg,#001242,#0094c6,#005e7c,#000022);
+    background: linear-gradient(241deg,#005384,#0094c6,#005e7c,#107be5);
     background-size: 240% 240%;
-    background-repeat: no-repeat;
     animation: gradient-animation 16s ease infinite;
+    color: white !important;
 }
 @keyframes gradient-animation {
     0% {

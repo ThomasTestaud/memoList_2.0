@@ -1,10 +1,15 @@
 // URL of the API endpoint you want to request data from
-const apiUrl = 'http://localhost:3000/word/1';
+// Create a URL object from the current URL
+const url = new URL(window.location.href);
+const idList = Number(url.searchParams.get('listId'));
+const apiUrl = 'http://localhost:3000/word/'+ idList;
 const string_one = document.getElementById('string-one');
 const string_two_response = document.getElementById('string-two-response');
 const show_answer = document.getElementById('show-answer');
 const submit_response = document.getElementById('submit-response');
 const string_two = document.getElementById('string-two');
+const crud_button = document.getElementById('crud-button');
+const crud = document.getElementById('crud');
 let trueResponse;
 // Make a GET request using the fetch API
 fetch(apiUrl)
@@ -40,8 +45,12 @@ function displaySuccess(){
 function displayError(){
     window.alert('error');
 }
+function displayCrud(){
+    crud.classList.toggle("d-none");
+}
 show_answer.addEventListener("click",displayAnswer);
 submit_response.addEventListener("click",checkAnswer);
+crud_button.addEventListener("click",displayCrud);
 function checkAnswer(){
     string_two.value.toLowerCase() === trueResponse.toLowerCase() ? displaySuccess() : displayError();
 };

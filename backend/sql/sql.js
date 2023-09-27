@@ -1,27 +1,35 @@
 const mysql = require('mysql');
 
-const connection = mysql.createConnection({
-    'host': 'localhost',
-    'user': 'root',
-    'password': '',
-    "database": 'memolist_2.0',
-});  
+// Create a connection pool
+const pool = mysql.createPool({
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'memolist_2.0',
+});
 
-function sqlQuery(query, callback){
-    connection.connect(connError => {
-        if(connError){
-            console.log(connError)
-            throw new Error("Connection error " + connError);
-        }
-        connection.query(query, (error, result) => {
-            if(error){
-                console.log(error)
-                throw new Error("Query error " + error);
-            }
-            
-            callback(result);
-            connection.end();
-        });
-    });
+// Function to execute SQL queries
+function sqlQuery(query, values, callback) {
+  // Get a connection from the pool
+  pool.getConnection((connError, connection) => {
+    if (connError) {
+      console.error('Connection error:', connError);
+      return callback(connError, null);
     }
+
+    // Execute the query with optional values
+    connection.query(query, values, (queryError, result) => {
+      // Release the connection back to the pool
+      connection.release();
+
+      if (queryError) {
+        console.error('Query error:', queryError);
+        return callback(queryError, null);
+      }
+
+      callback(null, result);
+    });
+  });
+}
+
 module.exports = sqlQuery;

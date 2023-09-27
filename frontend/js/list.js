@@ -1,0 +1,113 @@
+const url = 'http://localhost:3000/list/';
+const validate = document.getElementById('validate');
+const allLists = document.getElementById('all-lists');
+
+validate.addEventListener('click', () => {
+    createList();
+})
+
+getLists();
+
+function createList() {
+    const title = document.getElementById('title').value;
+    const description = document.getElementById('description').value;
+    
+    const data = {
+      title: title,
+      description: description
+    };
+    
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(responseData => {
+        console.log('Response Data:', responseData);
+        getLists();
+      })
+      .catch(error => {
+        console.error('Fetch error:', error);
+      });
+}
+
+function getLists() {
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(responseData => {
+        console.log('Response Data:', responseData);
+        displayLists(responseData);
+      })
+      .catch(error => {
+        console.error('Fetch error:', error);
+      });
+}
+
+function deleteList(id) {
+    
+    fetch(url+id, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(responseData => {
+        console.log('Response Data:', responseData);
+        getLists();
+      })
+      .catch(error => {
+        console.error('Fetch error:', error);
+      });
+}
+
+function displayLists(data) {
+    allLists.innerHTML = "";
+
+    for(list of data) {
+        allLists.innerHTML += `
+        <div class="card m-2 position-relative">
+            <svg class="trash position-absolute t-0 s-75 h-25 z-3" data-id="${list.id}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>      
+            <a href="/word.php?listId=${list.id}" class="card-body text-decoration-none">
+                <h2 class="card-title">${list.name}</h2>
+                <p class="card-text">${list.description}</p>
+            </a>
+        </div>
+        `;
+    }
+
+    mapEventsOnCards();
+}
+
+function mapEventsOnCards() {
+    const cards = document.querySelectorAll('.trash');
+    cards.forEach((el, index) =>  {
+        el.addEventListener('click', () => {
+            console.log(el.dataset.id)
+            deleteList(el.dataset.id);
+        })
+    })
+}

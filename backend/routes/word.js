@@ -6,7 +6,7 @@ const SQLquery = require('../sql/sql.js');
 router.get('/:listId', function(req, res, next) {
   const listId = Number(req.params.listId);
   const query = `SELECT * FROM words WHERE list_id = ?`;
-
+  
   const values = [listId];
 
   SQLquery(query, values, (error, response) => {

@@ -2,7 +2,7 @@
 // Create a URL object from the current URL
 const url = new URL(window.location.href);
 const idList = Number(url.searchParams.get('listId'));
-const apiUrl = 'http://localhost:3000/word/'+ idList;
+const apiUrl = 'http://localhost:3005/word/'+ idList;
 const string_one = document.getElementById('string-one');
 const string_two_response = document.getElementById('string-two-response');
 const show_answer = document.getElementById('show-answer');

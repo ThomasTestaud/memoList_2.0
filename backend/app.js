@@ -1,17 +1,20 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+let express = require('express');
+let path = require('path');
+let cookieParser = require('cookie-parser');
+let logger = require('morgan');
+const dotenv = require('dotenv');
+dotenv.config();
 const cors = require('cors');
 
-var wordRouter = require('./routes/word');
-var listRouter = require('./routes/list');
-var authRouter = require('./routes/auth');
+let wordRouter = require('./routes/word');
+let listRouter = require('./routes/list');
+let authRouter = require('./routes/auth');
 
-var app = express();
+let app = express();
 app.use(cors());
 
 app.use(logger('dev'));
+app.use(env)
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

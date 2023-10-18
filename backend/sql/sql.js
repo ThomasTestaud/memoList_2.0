@@ -2,10 +2,11 @@ const mysql = require('mysql');
 
 // Create a connection pool
 const pool = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'memolist_2.0',
+  'host': 'localhost',
+  'user': process.env.DB_USER,
+  'port': process.env.PORT,
+  'password': process.env.PASSWORD,
+  'database': process.env.DB_NAME
 });
 
 // Function to execute SQL queries

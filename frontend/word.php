@@ -4,7 +4,7 @@
             <div class="">
                 <div class="mx-auto">
                     <h2 id="string-one"></h2>
-                    <h3 id="string-two-response" class="d-none">hello</h3>
+                    <h3 id="string-two-response" class="d-none"></h3>
                 </div>
             </div>
             <div class="">

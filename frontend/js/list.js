@@ -1,4 +1,4 @@
-const url = 'http://localhost:3000/list/';
+const url = 'http://localhost:3005/list/';
 const validate = document.getElementById('validate');
 const allLists = document.getElementById('all-lists');
 const editPopup = document.getElementById('edit-popup');
